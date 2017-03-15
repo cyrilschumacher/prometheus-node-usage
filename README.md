@@ -2,6 +2,13 @@
 
 > Exporter node.js application metrics (CPU, RAM and uptime).
 
+[![MIT License][license-image]][license-url]
+[![npm version][npmjs-image]][npmjs-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![david-dm dependency Status][david-image]][david-url]
+[![david-dm devDependency Status][david-dev-dependencies-image]][david-dev-dependencies-url]
+
 ## Installation
 
 With [npm](https://npmjs.org/) installed, run :
@@ -15,7 +22,6 @@ Or if you use [yarn](https//:yarnpkg.com/), run:
 ```shell
 $ yarn add prometheus-node-usage
 ```
-
 You can use **prometheus-node-usage** from your JavaScript project.
 
 ## License
@@ -54,10 +60,3 @@ You can use **prometheus-node-usage** from your JavaScript project.
 [david-dev-dependencies-url]: https://david-dm.org/cyrilschumacher/prometheus-node-usage#info=devDependencies
 [david-image]: https://david-dm.org/cyrilschumacher/prometheus-node-usage.svg
 [david-url]: https://david-dm.org/cyrilschumacher/prometheus-node-usage
-
-[![MIT License][license-image]][license-url]
-[![npm version][npmjs-image]][npmjs-url]
-[![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
-[![david-dm dependency Status][david-image]][david-url]
-[![david-dm devDependency Status][david-dev-dependencies-image]][david-dev-dependencies-url]

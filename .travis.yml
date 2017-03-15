@@ -15,5 +15,5 @@ cache:
 install:
   - yarn
 script:
-  - yarn run-script lint
-  - yarn test
+  - yarn run build:lint
+  - yarn run test:coverage
