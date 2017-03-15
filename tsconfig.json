@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "alwaysStrict": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "outDir": "lib",
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "strictNullChecks": true,
+        "baseUrl": "src",
+        "lib": [
+            "es6"
+        ]
+    },
+    "filesGlob": [
+        "src/**/*.{ts, d.ts}"
+    ],
+    "exclude": [
+        "node_modules",
+        "test"
+    ]
+}
