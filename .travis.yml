@@ -17,3 +17,4 @@ install:
 script:
   - yarn run build:lint
   - yarn run test:coverage
+  - yarn run coveralls
