@@ -3,6 +3,7 @@
         "allowJs": false,
         "alwaysStrict": true,
         "baseUrl": "src",
+        "declaration": true,
         "module": "commonjs",
         "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,

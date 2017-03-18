@@ -1,0 +1,10 @@
+*.log
+*.tgz
+.travis.yml
+.nyc_output
+coverage
+node_modules
+src
+test
+tsconfig.json
+tslint.json

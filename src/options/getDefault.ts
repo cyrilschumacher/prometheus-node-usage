@@ -21,11 +21,7 @@
  * SOFTWARE.
  */
 
-function format(value: number) {
-    return "" + value;
-}
-
-export function getDefaultOptions(options?: Options, defaultFormatter = format, defaultPrefix = ""): Options {
+export function getDefaultOptions(options?: Options, defaultFormatter = (value: number) => "" + value, defaultPrefix = ""): Options {
     return {
         formatters: {
             cpuUsage: defaultFormatter,
