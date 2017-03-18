@@ -12,7 +12,7 @@ describe("getHeapUsed", () => {
     before(() => {
         const createMetricStub = (metricName: string, value: any) => `${metricName} ${value}`;
         const stubs = { "../../builder/create": { createMetric: createMetricStub } };
-        stub = proxyquire.noCallThru().load("../../../../src/metric/monitor/memory/getHeapUsed", stubs);
+        stub = proxyquire.load("../../../../src/metric/monitor/memory/getHeapUsed", stubs);
 
         processStub = {
             memoryUsage: () => {

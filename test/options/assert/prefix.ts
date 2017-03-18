@@ -9,14 +9,14 @@ describe("assertPrefix", () => {
         chai.expect(fn).to.not.throw(TypeError);
     });
 
+    it("should not throw an exception with empty metric name", () => {
+        const fn = () => assertPrefix("test", "");
+        chai.expect(fn).to.not.throw(ReferenceError);
+    });
+
     it("should throw an exception with invalid metric name", () => {
         const fn = () => assertPrefix("test", "metric/name");
         chai.expect(fn).to.throw(TypeError);
-    });
-
-    it("should throw an exception with empty metric name", () => {
-        const fn = () => assertPrefix("test", "");
-        chai.expect(fn).to.throw(ReferenceError);
     });
 
     it("should throw an exception with undefined metric name", () => {
