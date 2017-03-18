@@ -9,20 +9,55 @@
 [![david-dm dependency Status][david-image]][david-url]
 [![david-dm devDependency Status][david-dev-dependencies-image]][david-dev-dependencies-url]
 
+Exports metrics from a Node application. The library obtains data on CPU and memory on current process and creates a format to be used from the [Prometheus](https://prometheus.io/) tool. Format example:
+
+    node_process_memory_used 4335264
+    node_process_memory_total 8368128
+    node_process_memory_rss 24854528
+    node_process_cpu_usage 12.5
+    node_process_uptime 0.256
+
 ## Installation
 
-With [npm](https://npmjs.org/) installed, run :
+With [npm](https://npmjs.org/) or [yarn](https//:yarnpkg.com/) installed, run :
 
 ```bash
 $ npm install prometheus-node-usage
-```
-
-Or if you use [yarn](https//:yarnpkg.com/), run:
-
-```shell
 $ yarn add prometheus-node-usage
 ```
+
 You can use **prometheus-node-usage** from your JavaScript project.
+
+## Usage
+
+```javascript
+var metrics = require('prometheus-node-usage');
+
+metrics.getMetricsAsync().then(function (metrics) {
+    // node_process_memory_used 4335264
+    // node_process_memory_total 8368128
+    // node_process_memory_rss 24854528
+    // node_process_cpu_usage 12.5
+    // node_process_uptime 0.256
+});
+```
+
+The function `getMetricsAsync` accepts options to customize metrics:
+
+```javascript
+var options = {
+    formatters: {                       // Functions to format the metric value.
+        cpuUsage: Function,
+        memory: {
+            heapTotal: Function,
+            heapUsed: Function,
+            residentSetSize: Function
+        },
+        uptime: Function
+    },
+    prefix: String                      // Prefix for metric name.
+};
+```
 
 ## License
 
