@@ -58,6 +58,6 @@ export async function createMetricsAsync(resolve: GetMetricsResolve, options: Op
     metrics.push(uptimeMetric);
 
     const formattedMetrics = metrics.join("\n");
-    const result = `${metrics}\n`;
+    const result = `${formattedMetrics}\n`;
     resolve(result);
 }

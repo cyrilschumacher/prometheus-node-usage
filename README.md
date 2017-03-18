@@ -9,6 +9,8 @@
 [![david-dm dependency Status][david-image]][david-url]
 [![david-dm devDependency Status][david-dev-dependencies-image]][david-dev-dependencies-url]
 
+![Metrics from Grafana](metrics.png)
+
 Exports metrics from a Node application. The library obtains data on CPU and memory on current process and creates a format to be used from the [Prometheus](https://prometheus.io/) tool. Format example:
 
     node_process_memory_used 4335264
@@ -42,20 +44,25 @@ metrics.getMetricsAsync().then(function (metrics) {
 });
 ```
 
+```typescript
+import { getMetricsAsync } from "prometheus-node-usage";
+const metrics = await getMetricsAsync();
+```
+
 The function `getMetricsAsync` accepts options to customize metrics:
 
 ```javascript
 var options = {
     formatters: {                       // Functions to format the metric value.
-        cpuUsage: Function,
+        cpuUsage: [Function],
         memory: {
-            heapTotal: Function,
-            heapUsed: Function,
-            residentSetSize: Function
+            heapTotal: [Function],
+            heapUsed: [Function],
+            residentSetSize: [Function]
         },
-        uptime: Function
+        uptime: [Function]
     },
-    prefix: String                      // Prefix for metric name.
+    prefix: [String]                    // Prefix for metric name.
 };
 ```
 
