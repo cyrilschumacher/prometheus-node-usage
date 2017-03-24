@@ -1,0 +1,24 @@
+{
+    "all": true,
+    "instrument": true,
+    "sourceMap": true,
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/metrics/monitor/cpu/pidusage.d.ts",
+      "node_modules",
+      "lib",
+      "test"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ]
+  }

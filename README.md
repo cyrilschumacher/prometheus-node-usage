@@ -48,24 +48,6 @@ metrics.getMetricsAsync().then(function (metrics) {
 import { getMetricsAsync } from "prometheus-node-usage";
 const metrics = await getMetricsAsync();
 ```
-
-The function `getMetricsAsync` accepts options to customize metrics:
-
-```javascript
-var options = {
-    formatters: {                       // Functions to format the metric value.
-        cpuUsage: [Function],
-        memory: {
-            heapTotal: [Function],
-            heapUsed: [Function],
-            residentSetSize: [Function]
-        },
-        uptime: [Function]
-    },
-    prefix: [String]                    // Prefix for metric name.
-};
-```
-
 ## License
 
 > The MIT License (MIT)

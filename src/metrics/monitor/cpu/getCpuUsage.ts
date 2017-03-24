@@ -21,22 +21,22 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import { createMetric } from "../builder/create";
+import { getStatAsync } from "./getStatAsync";
 
-import * as http from "http";
+const DefaultFormatter = (value: number) => "" + value;
 
-import { createMetricsAsync, GetMetricsResolve } from "./metrics/createMetricsAsync";
+/**
+ * Creates a metric from CPU usage.
+ *
+ * @param {Process}     [currentProcess]    A current process.
+ * @param {string}      [name]              A metric name.
+ * @param {Function}    [formatter]         A formatter.
+ * @return {string} The metric.
+ */
+export async function getCpuUsage(currentProcess = process, name = "node_process_cpu_usage", formatter = DefaultFormatter) {
+    const stat = await getStatAsync(currentProcess.pid);
+    const cpuUsage = formatter(stat.cpu);
 
-export async function getMetricsAsync() {
-    return createMetricsAsync();
-}
-
-export async function listen(port = 9000) {
-    http.createServer(async (request: http.ServerRequest, response: http.ServerResponse) => {
-        const metrics = await createMetricsAsync();
-
-        response.writeHead(200, { "Content-Type": "text/plain" });
-        response.write(metrics);
-        response.end();
-    });
+    return createMetric(name, cpuUsage);
 }

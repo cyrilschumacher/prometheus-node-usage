@@ -13,14 +13,13 @@
         "preserveConstEnums": true,
         "removeComments": true,
         "strictNullChecks": true,
-        "lib": [
-            "es6"
-        ]
+        "lib": ["es6"]
     },
     "filesGlob": [
-        "src/**/*.{ts, d.ts}"
+        "src/**/*.ts"
     ],
     "exclude": [
+        "lib",
         "node_modules",
         "test"
     ]

@@ -21,22 +21,17 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import { createMetricLabels } from "./label/create";
+import { MetricLabel } from "./label/metricLabel";
 
-import * as http from "http";
-
-import { createMetricsAsync, GetMetricsResolve } from "./metrics/createMetricsAsync";
-
-export async function getMetricsAsync() {
-    return createMetricsAsync();
-}
-
-export async function listen(port = 9000) {
-    http.createServer(async (request: http.ServerRequest, response: http.ServerResponse) => {
-        const metrics = await createMetricsAsync();
-
-        response.writeHead(200, { "Content-Type": "text/plain" });
-        response.write(metrics);
-        response.end();
-    });
+/**
+ * Create a metric from a key and a value.
+ *
+ * @param {string}          name        A metric name.
+ * @param {any}             value       A metric value.
+ * @param {MetricLabel[]}   [labels]    Additional information.
+ */
+export function createMetric(name: string, value: any, ...labels: MetricLabel[]) {
+    const metricLabels = createMetricLabels(labels);
+    return `${name}${metricLabels} ${value}`;
 }

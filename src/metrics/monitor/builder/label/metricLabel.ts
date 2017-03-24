@@ -21,22 +21,16 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
-
-import * as http from "http";
-
-import { createMetricsAsync, GetMetricsResolve } from "./metrics/createMetricsAsync";
-
-export async function getMetricsAsync() {
-    return createMetricsAsync();
-}
-
-export async function listen(port = 9000) {
-    http.createServer(async (request: http.ServerRequest, response: http.ServerResponse) => {
-        const metrics = await createMetricsAsync();
-
-        response.writeHead(200, { "Content-Type": "text/plain" });
-        response.write(metrics);
-        response.end();
-    });
+/**
+ * Label for metric.
+ * @class
+ */
+export class MetricLabel {
+    /**
+     * Constructor.
+     * @constructor
+     * @param {string} name     A label name.
+     * @param {string} value    A label value.
+     */
+    public constructor(public name: string, public value: any) {}
 }

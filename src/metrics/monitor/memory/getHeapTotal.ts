@@ -21,22 +21,21 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import { createMetric } from "../builder/create";
 
-import * as http from "http";
+const DefaultFormatter = (value: number) => "" + value;
 
-import { createMetricsAsync, GetMetricsResolve } from "./metrics/createMetricsAsync";
+/**
+ * Creates a metric from total heap memory.
+ *
+ * @param {Process}     [currentProcess]    A current process.
+ * @param {string}      [name]              A metric name.
+ * @param {Function}    [formatter]         A formatter.
+ * @return {string} The metric.
+ */
+export function getHeapTotal(currentProcess = process, name = "node_process_memory_heap_total", formatter = DefaultFormatter) {
+    const memoryUsage = currentProcess.memoryUsage();
+    const heapTotal = formatter(memoryUsage.heapTotal);
 
-export async function getMetricsAsync() {
-    return createMetricsAsync();
-}
-
-export async function listen(port = 9000) {
-    http.createServer(async (request: http.ServerRequest, response: http.ServerResponse) => {
-        const metrics = await createMetricsAsync();
-
-        response.writeHead(200, { "Content-Type": "text/plain" });
-        response.write(metrics);
-        response.end();
-    });
+    return createMetric(name, heapTotal);
 }

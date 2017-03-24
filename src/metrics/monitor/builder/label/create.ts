@@ -21,22 +21,27 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import { MetricLabel } from "./metricLabel";
 
-import * as http from "http";
+/**
+ * Create create metric labels.
+ *
+ * @param {MetricLabel[]} labels Labels to convert to metric labels.
+ * @return {string} The metric labels.
+ */
+export function createMetricLabels(labels: MetricLabel[]) {
+    let metricLabels = "";
+    if (labels && labels.length) {
+        let items: string[] = [];
+        for (const label of labels) {
+            if (label && label.name && label.value) {
+                items.push(`${label.name}="${label.value}"`);
+            }
+        }
 
-import { createMetricsAsync, GetMetricsResolve } from "./metrics/createMetricsAsync";
+        const itemsInline = items.join(",");
+        metricLabels = `{${itemsInline}}`;
+    }
 
-export async function getMetricsAsync() {
-    return createMetricsAsync();
-}
-
-export async function listen(port = 9000) {
-    http.createServer(async (request: http.ServerRequest, response: http.ServerResponse) => {
-        const metrics = await createMetricsAsync();
-
-        response.writeHead(200, { "Content-Type": "text/plain" });
-        response.write(metrics);
-        response.end();
-    });
+    return metricLabels;
 }
