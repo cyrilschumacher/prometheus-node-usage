@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.3.0] - 2017-03-25
+
+### Added
+- Add metrics for disk I/O;
+
+### Changed
+- Update webservice: metrics are only returned from `/metrics` path;
+
 ## [0.2.1] - 2017-03-24
 
 ### Added
@@ -37,5 +45,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Fix TypeScript error (private formatter `Function`);
 
+[0.2.1]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.2.1...0.3.0
+[0.2.1]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.1.3...0.2.0
 [0.1.3]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.1.2...0.1.3
