@@ -18,6 +18,10 @@ Exports metrics from a Node application. The library obtains data on CPU and mem
     node_process_memory_rss 24854528
     node_process_cpu_usage 12.5
     node_process_uptime 0.256
+    node_process_disk_io_read 132
+    node_process_disk_io_write 12288
+
+> metrics `node_process_disk_io_read` and `node_process_disk_io_write` are available linux system only.
 
 ## Installation
 
@@ -36,11 +40,7 @@ You can use **prometheus-node-usage** from your JavaScript project.
 var metrics = require('prometheus-node-usage');
 
 metrics.getMetricsAsync().then(function (metrics) {
-    // node_process_memory_used 4335264
-    // node_process_memory_total 8368128
-    // node_process_memory_rss 24854528
-    // node_process_cpu_usage 12.5
-    // node_process_uptime 0.256
+    // use metrics in your soure code
 });
 ```
 

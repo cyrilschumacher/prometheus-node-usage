@@ -21,25 +21,22 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import { createMetric } from "../../builder/create";
+import { getDiskStat } from "./getDiskStat";
 
-import * as http from "http";
-import * as net from "net";
+const DefaultFormatter = (value: string) => "" + value;
 
-import { handleRequest } from "./handleRequest";
-import { createMetricsAsync } from "./metrics/createMetricsAsync";
+/**
+ * Creates a metric from CPU usage.
+ *
+ * @param {Process}     [currentProcess]    A current process.
+ * @param {string}      [name]              A metric name.
+ * @param {Function}    [formatter]         A formatter.
+ * @return {string} The metric.
+ */
+export async function getReadDisk(currentProcess = process, name = "node_process_disk_io_read", formatter = DefaultFormatter) {
+    const disk = await getDiskStat(process.pid);
+    const readBytes = formatter(disk.read_bytes);
 
-export async function getMetricsAsync() {
-    return createMetricsAsync();
+    return createMetric(name, readBytes);
 }
-
-export function listen(port = 9000) {
-    const server = http.createServer(handleRequest);
-    return server.listen(port);
-}
-
-async function test() {
-    console.log(await getMetricsAsync());
-}
-
-test();

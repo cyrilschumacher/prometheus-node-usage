@@ -5,7 +5,7 @@ import * as chai from "chai";
 import * as process from "process";
 import * as sinon from "sinon";
 
-import { createMetric } from "../../../../src/metrics/monitor/builder/create";
+import { createMetric } from "../../../src/metrics/builder/create";
 
 describe("createMetricLabels()", () => {
     it("should create metric", () => {

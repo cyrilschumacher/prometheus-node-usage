@@ -25,35 +25,31 @@ import * as pidusage from "pidusage";
 
 import { getCpuUsage } from "./monitor/cpu/getCpuUsage";
 import { getUptime } from "./monitor/getUptime";
+import { getReadDisk } from "./monitor/io/getReadDisk";
+import { getWriteDisk } from "./monitor/io/getWriteDisk";
 import { getHeapTotal } from "./monitor/memory/getHeapTotal";
 import { getHeapUsed } from "./monitor/memory/getHeapUsed";
 import { getResidentSetSize } from "./monitor/memory/getResidentSetSize";
 
-export type GetMetricsResolve = (result: string) => void;
-export type GetMetricsReject = (error: any) => void;
-
 /**
  * Create Prometheus metrics on current process.
- *
- * @param {GetMetricsResolve}   resolve A resolver function.
- * @param {Options}             options Options.
  */
 export async function createMetricsAsync() {
     let metrics: string[] = [];
-    const heapUsedMetric = getHeapUsed();
-    metrics.push(heapUsedMetric);
 
-    const heapTotalMetric = getHeapTotal();
-    metrics.push(heapTotalMetric);
-
-    const residentSetSizeMetric = getResidentSetSize();
-    metrics.push(residentSetSizeMetric);
+    const monitors = [getHeapUsed, getHeapTotal, getResidentSetSize, getUptime];
+    monitors.map((monitor) => monitor()).forEach((metric) => metrics.push(metric));
 
     const cpuUsageMetric = await getCpuUsage();
     metrics.push(cpuUsageMetric);
 
-    const uptimeMetric = getUptime();
-    metrics.push(uptimeMetric);
+    if (process.platform === "linux") {
+        const readDisk = await getReadDisk();
+        metrics.push(readDisk);
+
+        const writeDisk = await getWriteDisk();
+        metrics.push(writeDisk);
+    }
 
     const formattedMetrics = metrics.join("\n");
     return `${formattedMetrics}\n`;

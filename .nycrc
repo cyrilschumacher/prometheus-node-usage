@@ -6,7 +6,7 @@
       "src/**/*.ts"
     ],
     "exclude": [
-      "src/metrics/monitor/cpu/pidusage.d.ts",
+      "src/**/*.d.ts",
       "node_modules",
       "lib",
       "test"

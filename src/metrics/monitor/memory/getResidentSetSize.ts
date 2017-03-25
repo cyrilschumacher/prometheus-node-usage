@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-import { createMetric } from "../builder/create";
+import { createMetric } from "../../builder/create";
 
 const DefaultFormatter = (value: number) => "" + value;
 

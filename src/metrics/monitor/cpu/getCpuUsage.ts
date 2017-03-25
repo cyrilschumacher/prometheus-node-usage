@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-import { createMetric } from "../builder/create";
+import { createMetric } from "../../builder/create";
 import { getStatAsync } from "./getStatAsync";
 
 const DefaultFormatter = (value: number) => "" + value;

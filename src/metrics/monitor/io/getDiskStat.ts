@@ -21,25 +21,24 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import procfs =  require("procfs-stats");
 
-import * as http from "http";
-import * as net from "net";
+type DiskStatResolve = (stat: procfs.Disk) => void;
+type DiskStatReject = (error: any) => void;
 
-import { handleRequest } from "./handleRequest";
-import { createMetricsAsync } from "./metrics/createMetricsAsync";
+export function getDiskStat(pid: number) {
+    const executor = (resolve: DiskStatResolve, reject: DiskStatReject) => {
+        const callback = ((error: any, io: procfs.Disk) => {
+            if (error) {
+                return reject(error);
+            }
 
-export async function getMetricsAsync() {
-    return createMetricsAsync();
+            resolve(io);
+        });
+
+        const ps = procfs(pid);
+        ps.io(callback);
+    };
+
+    return new Promise(executor);
 }
-
-export function listen(port = 9000) {
-    const server = http.createServer(handleRequest);
-    return server.listen(port);
-}
-
-async function test() {
-    console.log(await getMetricsAsync());
-}
-
-test();

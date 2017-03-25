@@ -26,20 +26,15 @@
 import * as http from "http";
 import * as net from "net";
 
-import { handleRequest } from "./handleRequest";
 import { createMetricsAsync } from "./metrics/createMetricsAsync";
 
-export async function getMetricsAsync() {
-    return createMetricsAsync();
-}
+export async function handleRequest(request: http.ServerRequest, response: http.ServerResponse) {
+    if (request.url === "/metrics") {
+        const metrics = await createMetricsAsync();
 
-export function listen(port = 9000) {
-    const server = http.createServer(handleRequest);
-    return server.listen(port);
-}
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write(metrics);
+    }
 
-async function test() {
-    console.log(await getMetricsAsync());
+    response.end();
 }
-
-test();
