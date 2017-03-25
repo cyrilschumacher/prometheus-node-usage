@@ -37,9 +37,3 @@ export function listen(port = 9000) {
     const server = http.createServer(handleRequest);
     return server.listen(port);
 }
-
-async function test() {
-    console.log(await getMetricsAsync());
-}
-
-test();
