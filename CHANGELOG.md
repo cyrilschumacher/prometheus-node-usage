@@ -45,7 +45,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Fix TypeScript error (private formatter `Function`);
 
-[0.2.1]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.2.1...0.3.0
+[0.3.0]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.1.3...0.2.0
 [0.1.3]: https://github.com/cyrilschumacher/prometheus-node-usage/compare/0.1.2...0.1.3
