@@ -34,13 +34,13 @@ describe("getDiskStat", () => {
     beforeEach(() => procfsStub = sinon.stub(procfs, "call"));
     afterEach(() => procfsStub.restore());
 
-    it("should return promise", async () => {
-        // When
+    it("should return promise", () => {
+        // Given
         const ioStub = sinon.stub();
         const statsStub = { io: ioStub };
         procfsStub.withArgs(void 0, 0).returns(statsStub);
 
-
+        // When
         const diskStat = getDiskStat(0);
 
         // Then

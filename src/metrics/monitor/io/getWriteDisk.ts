@@ -21,10 +21,10 @@
  * SOFTWARE.
  */
 
-import procfs = require("procfs-stats");
+import * as metric from "../../builder/create";
+import * as io from "./getDiskStat";
 
-import { createMetric } from "../../builder/create";
-import { getDiskStat } from "./getDiskStat";
+import procfs = require("procfs-stats");
 
 const DefaultFormatter = (value: string) => "" + value;
 
@@ -37,8 +37,8 @@ const DefaultFormatter = (value: string) => "" + value;
  * @return {string} The metric.
  */
 export async function getWriteDisk(currentProcess = process, name = "node_process_disk_io_write", formatter = DefaultFormatter) {
-    const disk = await getDiskStat(process.pid);
+    const disk = await io.getDiskStat(process.pid);
     const writeBytes = formatter(disk.write_bytes);
 
-    return createMetric(name, writeBytes);
+    return metric.createMetric(name, writeBytes);
 }

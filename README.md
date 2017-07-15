@@ -8,6 +8,7 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![david-dm dependency Status][david-image]][david-url]
 [![david-dm devDependency Status][david-dev-dependencies-image]][david-dev-dependencies-url]
+[![Known Vulnerabilities](snyk-image)](snyk-url)
 
 ![Metrics from Grafana](metrics.png)
 
@@ -52,13 +53,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
+
 [npmjs-image]: https://badge.fury.io/js/prometheus-node-usage.svg
 [npmjs-url]: https://www.npmjs.com/package/prometheus-node-usage
+
 [travis-image]: https://travis-ci.org/cyrilschumacher/prometheus-node-usage.svg
 [travis-url]: https://travis-ci.org/cyrilschumacher/prometheus-node-usage
+
 [coveralls-image]: https://coveralls.io/repos/github/cyrilschumacher/prometheus-node-usage/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/cyrilschumacher/prometheus-node-usage?branch=master
+
 [david-dev-dependencies-image]: https://david-dm.org/cyrilschumacher/prometheus-node-usage/dev-status.svg
 [david-dev-dependencies-url]: https://david-dm.org/cyrilschumacher/prometheus-node-usage#info=devDependencies
+
 [david-image]: https://david-dm.org/cyrilschumacher/prometheus-node-usage.svg
 [david-url]: https://david-dm.org/cyrilschumacher/prometheus-node-usage
+
+[snyk-image]: https://snyk.io/test/github/cyrilschumacher/prometheus-node-usage/badge.svg
+[snyk-url]: https://snyk.io/test/github/cyrilschumacher/prometheus-node-usage

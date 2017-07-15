@@ -21,8 +21,8 @@
  * SOFTWARE.
  */
 
-import { createMetric } from "../../builder/create";
-import { getDiskStat } from "./getDiskStat";
+import * as metric from "../../builder/create";
+import * as io from "./getDiskStat";
 
 const DefaultFormatter = (value: string) => "" + value;
 
@@ -35,8 +35,8 @@ const DefaultFormatter = (value: string) => "" + value;
  * @return {string} The metric.
  */
 export async function getReadDisk(currentProcess = process, name = "node_process_disk_io_read", formatter = DefaultFormatter) {
-    const disk = await getDiskStat(process.pid);
+    const disk = await io.getDiskStat(process.pid);
     const readBytes = formatter(disk.read_bytes);
 
-    return createMetric(name, readBytes);
+    return metric.createMetric(name, readBytes);
 }
