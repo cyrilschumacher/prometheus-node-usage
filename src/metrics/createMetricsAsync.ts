@@ -35,8 +35,7 @@ import { getResidentSetSize } from "./monitor/memory/getResidentSetSize";
  * Create Prometheus metrics on current process.
  */
 export async function createMetricsAsync() {
-    let metrics: string[] = [];
-
+    const metrics = new Array<string>();
     const monitors = [getHeapUsed, getHeapTotal, getResidentSetSize, getUptime];
     monitors.map((monitor) => monitor()).forEach((metric) => metrics.push(metric));
 

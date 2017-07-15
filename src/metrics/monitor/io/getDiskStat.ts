@@ -21,22 +21,15 @@
  * SOFTWARE.
  */
 
-import procfs =  require("procfs-stats");
+import procfs = require("procfs-stats");
 
-type DiskStatResolve = (stat: procfs.Disk) => void;
+type DiskStatResolve = (stat: procfs.Io) => void;
 type DiskStatReject = (error: any) => void;
 
 export function getDiskStat(pid: number) {
     const executor = (resolve: DiskStatResolve, reject: DiskStatReject) => {
-        const callback = ((error: any, io: procfs.Disk) => {
-            if (error) {
-                return reject(error);
-            }
-
-            resolve(io);
-        });
-
-        const ps = procfs(pid);
+        const callback = (error: any, io: procfs.Io) => error ? reject(error) : resolve(io);
+        const ps = procfs.call(void 0, pid);
         ps.io(callback);
     };
 

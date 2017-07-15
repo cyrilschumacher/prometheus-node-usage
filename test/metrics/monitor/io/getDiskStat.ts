@@ -21,20 +21,29 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
+import * as chai from "chai";
+import * as sinon from "sinon";
 
-import * as http from "http";
-import * as net from "net";
+import { getDiskStat } from "../../../../src/metrics/monitor/io/getDiskStat";
 
-import { createMetricsAsync } from "./metrics/createMetricsAsync";
+import procfs = require("procfs-stats");
 
-export async function handleRequest(request: http.ServerRequest, response: http.ServerResponse) {
-    if (request.url === "/metrics") {
-        const metrics = await createMetricsAsync();
+describe("getDiskStat", () => {
+    let procfsStub: sinon.SinonStub;
 
-        response.writeHead(200, { "Content-Type": "text/plain" });
-        response.write(metrics);
-    }
+    beforeEach(() => procfsStub = sinon.stub(procfs, "call"));
+    afterEach(() => procfsStub.restore());
 
-    response.end();
-}
+    it("should return promise", async () => {
+        // When
+        const ioStub = sinon.stub();
+        const statsStub = { io: ioStub };
+        procfsStub.withArgs(void 0, 0).returns(statsStub);
+
+
+        const diskStat = getDiskStat(0);
+
+        // Then
+        chai.expect(diskStat).to.be.a("Promise");
+    });
+});

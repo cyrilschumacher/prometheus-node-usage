@@ -21,19 +21,16 @@
  * SOFTWARE.
  */
 
-/// <reference types="node"/>
-
 import * as http from "http";
 import * as net from "net";
 
-import { handleRequest } from "./handleRequest";
 import { createMetricsAsync } from "./metrics/createMetricsAsync";
 
+/**
+ * Gets metrics.
+ *
+ * @return {Promise} The promise.
+ */
 export async function getMetricsAsync() {
     return createMetricsAsync();
-}
-
-export function listen(port = 9000) {
-    const server = http.createServer(handleRequest);
-    return server.listen(port);
 }

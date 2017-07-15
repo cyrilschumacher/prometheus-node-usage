@@ -32,7 +32,7 @@ import { MetricLabel } from "./metricLabel";
 export function createMetricLabels(labels: MetricLabel[]) {
     let metricLabels = "";
     if (labels && labels.length) {
-        let items: string[] = [];
+        const items: string[] = [];
         for (const label of labels) {
             if (label && label.name && label.value) {
                 items.push(`${label.name}="${label.value}"`);

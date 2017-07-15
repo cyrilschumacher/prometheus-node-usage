@@ -34,14 +34,7 @@ type StatReject = (error: any) => void;
  */
 export async function getStatAsync(pid: number) {
     const executor = (resolve: StatResolve, reject: StatReject) => {
-        const callback = (error: any, stat: pidusage.Stat) => {
-            if (error) {
-                return reject(error);
-            }
-
-            resolve(stat);
-        };
-
+        const callback = (error: any, stat: pidusage.Stat) => error ? reject(error) : resolve(stat);
         pidusage.stat(pid, callback);
     };
 

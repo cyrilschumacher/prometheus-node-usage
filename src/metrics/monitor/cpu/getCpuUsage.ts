@@ -24,6 +24,12 @@
 import { createMetric } from "../../builder/create";
 import { getStatAsync } from "./getStatAsync";
 
+/**
+ * Default formatter.
+ *
+ * @param {number} value A CPU usage.
+ * @return {string} The original CPU usage.
+ */
 const DefaultFormatter = (value: number) => "" + value;
 
 /**

@@ -21,6 +21,8 @@
  * SOFTWARE.
  */
 
+import procfs = require("procfs-stats");
+
 import { createMetric } from "../../builder/create";
 import { getDiskStat } from "./getDiskStat";
 
