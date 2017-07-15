@@ -8,7 +8,7 @@
 [![Coverage Status][coveralls-image]][coveralls-url]
 [![david-dm dependency Status][david-image]][david-url]
 [![david-dm devDependency Status][david-dev-dependencies-image]][david-dev-dependencies-url]
-[![Known Vulnerabilities](snyk-image)](snyk-url)
+[![Known Vulnerabilities][snyk-image]][snyk-url]
 
 ![Metrics from Grafana](metrics.png)
 
