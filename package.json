@@ -16,7 +16,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pidusage": "^1.1.1",
+    "pidusage": "^1.1.5",
     "procfs-stats": "^1.0.2"
   },
   "devDependencies": {
